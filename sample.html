@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8"/>
+  <title>AltaTech 設計系統 - 字級與配色指南</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; child-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(self)">
+  
+  <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <style>
+    .style-guide-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    
+    .style-guide-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #4d65ff;
+    }
+    
+    .typography-sample {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .typography-info {
+      font-size: 0.875rem;
+      color: #666;
+      margin-top: 0.5rem;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .color-item {
+      padding: 1rem;
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+    }
+    
+    .color-item.light {
+      color: #333;
+    }
+    
+    .color-code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+    
+    .spacing-demo {
+      background: #f0f0f0;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-left: 3px solid #4d65ff;
+    }
+    
+    .color-usage {
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+    
+    .button-showcase {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    
+    .button-sample {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+    
+    .button-info, .component-info, .spacing-info, .effect-info {
+      font-size: 0.875rem;
+      color: #666;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .component-showcase, .spacing-showcase, .effects-showcase {
+      margin: 2rem 0;
+    }
+    
+    .spacing-item, .effect-item {
+      margin: 1rem 0;
+    }
+    
+    .responsive-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .breakpoint-item {
+      padding: 1rem;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .color-palette {
+        grid-template-columns: 1fr;
+      }
+      
+      .button-showcase {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .responsive-info {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  
+  <!-- Security Protection Script -->
+  <script type="text/javascript" data-legitimate="true">
+    (function() {
+      'use strict';
+      
+      // 防盜鏈檢查 - Anti-Hotlinking Protection
+      function checkReferrer() {
+        const allowedDomains = [
+          'localhost',
+          '127.0.0.1',
+          'yourusername.github.io'  // 替換為你的實際 GitHub 用戶名
+          // 移除 'github.io' 以提高安全性
+        ];
+        
+        if (document.referrer && document.referrer !== '') {
+          const referrerDomain = new URL(document.referrer).hostname;
+          const currentDomain = window.location.hostname;
+          
+          // 如果不是從允許的域名或直接訪問
+          if (referrerDomain !== currentDomain && 
+              !allowedDomains.some(domain => referrerDomain.includes(domain))) {
+            console.warn('Unauthorized access detected from:', referrerDomain);
+            // 可選：重定向到首頁或顯示警告
+            // window.location.replace('https://your-official-domain.github.io');
+          }
+        }
+      }
+      
+      // 控制台保護 - Console Protection
+      function protectConsole() {
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        // 檢測開發者工具
+        let devtools = false;
+        setInterval(function() {
+          if (window.outerHeight - window.innerHeight > 200 || 
+              window.outerWidth - window.innerWidth > 200) {
+            if (!devtools) {
+              devtools = true;
+              console.clear();
+              console.log('%c⚠️ 警告 Warning', 'color: red; font-size: 20px; font-weight: bold;');
+              console.log('%c此為瀏覽器功能，供開發者使用。請勿在此處輸入或貼上任何代碼。', 'color: red; font-size: 14px;');
+              console.log('%cThis is a browser feature intended for developers. Do not enter or paste any code here.', 'color: red; font-size: 14px;');
+            }
+          } else {
+            devtools = false;
+          }
+        }, 500);
+      }
+      
+      // 頁面載入時執行安全檢查
+      document.addEventListener('DOMContentLoaded', function() {
+        checkReferrer();
+        protectConsole();
+        
+        // 反右鍵和快捷鍵保護
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          return false;
+        });
+        
+        document.addEventListener('keydown', function(e) {
+          // 禁用 F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S 等
+          if (e.key === 'F12' || 
+              (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+              (e.ctrlKey && e.key === 'u') ||
+              (e.ctrlKey && e.key === 's')) {
+            e.preventDefault();
+            return false;
+          }
+        });
+        
+        // 防止選取文字
+        document.addEventListener('selectstart', function(e) {
+          e.preventDefault();
+          return false;
+        });
+      });
+      
+      // 監控 DOM 變化以防篡改
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
+                console.warn('Unauthorized script injection detected:', node);
+                node.remove();
+              }
+            }
+          });
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+      
+    })();
+  </script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="padding-global">
+      <div class="container-large">
+        <div class="padding-section-large">
+          
+          <!-- Header -->
+          <div class="style-guide-header text-align-center">
+            <div class="margin-bottom margin-xsmall">
+              <div class="text-style-tagline">AltaTech｜數智聚</div>
+            </div>
+            <h1 class="heading-style-h1">設計系統指南</h1>
+            <p class="text-size-medium">Typography, Colors, Components & Interactive Elements</p>
+          </div>
+
+          <!-- Typography Section -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">文字階層系統 (Typography Hierarchy)</h2>
+            <p class="text-size-medium">基於實際使用的字體樣式和大小規範</p>
+            
+            <div class="typography-sample">
+              <h1 class="heading-style-h1">主標題 H1 - 頁面核心標題</h1>
+              <div class="typography-info">CSS: .heading-style-h1 | 使用場景: 首頁主標題、重要頁面標題</div>
+            </div>
+
+            <div class="typography-sample">
+              <h2 class="heading-style-h2">次標題 H2 - 主要區段標題</h2>
+              <div class="typography-info">CSS: .heading-style-h2 | 使用場景: 各區段標題 (團隊成員、我們的服務)</div>
+            </div>
+
+            <div class="typography-sample">
+              <h3 class="heading-style-h3">三級標題 H3 - 子區段標題</h3>
+              <div class="typography-info">CSS: .heading-style-h3 | 使用場景: 重要內容區塊、產品特色標題</div>
+            </div>
+
+            <div class="typography-sample">
+              <h4 class="heading-style-h4">四級標題 H4 - 卡片標題</h4>
+              <div class="typography-info">CSS: .heading-style-h4 | 使用場景: 團隊成員姓名、聯絡方式標題、卡片標題</div>
+            </div>
+
+            <div class="typography-sample">
+              <h5 class="heading-style-h5">五級標題 H5 - 細項標題</h5>
+              <div class="typography-info">CSS: .heading-style-h5 | 使用場景: 列表項目、次要資訊標題</div>
+            </div>
+
+            <div class="typography-sample">
+              <h6 class="heading-style-h6">六級標題 H6 - 輔助標題</h6>
+              <div class="typography-info">CSS: .heading-style-h6 | 使用場景: 註解標題、小標籤</div>
+            </div>
+          </div>
+
+          <!-- Text Sizes Section -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">文字大小系統 (Text Sizes)</h2>
+            <p class="text-size-medium">根據內容重要性和閱讀層級設計的文字大小</p>
+            
+            <div class="typography-sample">
+              <p class="text-size-large">大型文字 - 重要說明文字</p>
+              <div class="typography-info">CSS: .text-size-large | 使用場景: 重要說明、公司介紹、引言內容</div>
+            </div>
+
+            <div class="typography-sample">
+              <p class="text-size-medium">中型文字 - 一般內容文字</p>
+              <div class="typography-info">CSS: .text-size-medium | 使用場景: 內容段落、團隊介紹、一般說明文字</div>
+            </div>
+
+            <div class="typography-sample">
+              <p class="text-size-regular">標準文字 - 基礎內容文字</p>
+              <div class="typography-info">CSS: .text-size-regular | 使用場景: 基本內容、表單標籤</div>
+            </div>
+
+            <div class="typography-sample">
+              <p class="text-size-small">小型文字 - 輔助資訊</p>
+              <div class="typography-info">CSS: .text-size-small | 使用場景: 註解、輔助資訊、標籤文字</div>
+            </div>
+
+            <div class="typography-sample">
+              <p class="text-size-tiny">微小文字 - 版權與細節</p>
+              <div class="typography-info">CSS: .text-size-tiny | 使用場景: 版權聲明、法律條款、細節資訊</div>
+            </div>
+          </div>
+
+          <!-- Special Text Styles -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">特殊文字樣式 (Special Text Styles)</h2>
+            
+            <div class="typography-sample">
+              <div class="text-style-tagline">AltaTech｜數智聚</div>
+              <div class="typography-info">CSS: .text-style-tagline | 使用場景: 品牌標語、區段標識</div>
+            </div>
+
+            <div class="typography-sample">
+              <div class="text-weight-semibold">半粗體文字強調</div>
+              <div class="typography-info">CSS: .text-weight-semibold | 使用場景: 重要文字、姓名、關鍵資訊</div>
+            </div>
+          </div>
+
+          <!-- Color System -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">色彩系統 (Color System)</h2>
+            <p class="text-size-medium">基於 CSS 變數的現代化色彩系統</p>
+            
+            <h3 class="heading-style-h4">主要品牌色彩</h3>
+            <div class="color-palette">
+              <div class="color-item" style="background: #2e73ea; color: white;">
+                <strong>Primary Blue</strong>
+                <div class="color-code">#2e73ea</div>
+                <div class="color-usage">主色調 - 按鈕、連結、重點標記</div>
+              </div>
+              
+              <div class="color-item" style="background: #fed105; color: black;">
+                <strong>Secondary Yellow</strong>
+                <div class="color-code">#fed105</div>
+                <div class="color-usage">次要色 - 強調、警告、特殊標記</div>
+              </div>
+              
+              <div class="color-item" style="background: #623394; color: white;">
+                <strong>Accent Purple</strong>
+                <div class="color-code">#623394</div>
+                <div class="color-usage">輔助色 - 裝飾、特殊元素</div>
+              </div>
+              
+              <div class="color-item" style="background: #3cc1c0; color: white;">
+                <strong>Support Teal</strong>
+                <div class="color-code">#3cc1c0</div>
+                <div class="color-usage">支援色 - 成功狀態、正面回饋</div>
+              </div>
+            </div>
+            
+            <h3 class="heading-style-h4">中性色系</h3>
+            <div class="color-palette">
+              <div class="color-item" style="background: #0d0d0d; color: white;">
+                <strong>Neutral Darkest</strong>
+                <div class="color-code">#0d0d0d</div>
+                <div class="color-usage">主文字色、邊框</div>
+              </div>
+              
+              <div class="color-item" style="background: #555; color: white;">
+                <strong>Neutral Dark</strong>
+                <div class="color-code">#555555</div>
+                <div class="color-usage">次要文字</div>
+              </div>
+              
+              <div class="color-item" style="background: #868686; color: white;">
+                <strong>Neutral Medium</strong>
+                <div class="color-code">#868686</div>
+                <div class="color-usage">輔助文字</div>
+              </div>
+              
+              <div class="color-item" style="background: #b6b6b6; color: black;">
+                <strong>Neutral Light</strong>
+                <div class="color-code">#b6b6b6</div>
+                <div class="color-usage">淺色文字、禁用狀態</div>
+              </div>
+              
+              <div class="color-item" style="background: #f2f2f2; color: black; border: 1px solid #ddd;">
+                <strong>Neutral Lightest</strong>
+                <div class="color-code">#f2f2f2</div>
+                <div class="color-usage">背景色、卡片背景</div>
+              </div>
+              
+              <div class="color-item" style="background: #ffffff; color: black; border: 1px solid #ddd;">
+                <strong>Pure White</strong>
+                <div class="color-code">#ffffff</div>
+                <div class="color-usage">純白背景、內容區域</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button System -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">按鈕系統 (Button System)</h2>
+            <p class="text-size-medium">基於實際使用的按鈕樣式和互動狀態</p>
+            
+            <h3 class="heading-style-h4">主要按鈕</h3>
+            <div class="button-showcase">
+              <div class="button-sample">
+                <a href="#" class="button w-button">我們的服務</a>
+                <div class="button-info">CSS: .button | 主要行動按鈕</div>
+              </div>
+              
+              <div class="button-sample">
+                <a href="#" class="button is-secondary w-button">聯繫我們</a>
+                <div class="button-info">CSS: .button.is-secondary | 次要按鈕</div>
+              </div>
+              
+              <div class="button-sample">
+                <a href="#" class="button is-small w-button">小按鈕</a>
+                <div class="button-info">CSS: .button.is-small | 小尺寸按鈕</div>
+              </div>
+            </div>
+            
+            <h3 class="heading-style-h4">連結樣式</h3>
+            <div class="button-showcase">
+              <div class="button-sample">
+                <a href="#" class="button is-link w-inline-block">
+                  <div>文字連結</div>
+                  <div class="icon-embed-xxsmall w-embed">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 3L11 8L6 13" stroke="CurrentColor" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                </a>
+                <div class="button-info">CSS: .button.is-link | 文字連結按鈕</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layout Components -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">版面組件 (Layout Components)</h2>
+            
+            <h3 class="heading-style-h4">導航組件</h3>
+            <div class="component-showcase">
+              <nav class="navbar-brand" style="margin-bottom: 1rem;">
+                <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
+                  <li><a href="#" class="nav-link" style="text-decoration: none; color: #2e73ea; transition: color 0.3s ease;">首頁</a></li>
+                  <li><a href="#" class="nav-link" style="text-decoration: none; color: #2e73ea; transition: color 0.3s ease;">關於我們</a></li>
+                  <li><a href="#" class="nav-link" style="text-decoration: none; color: #2e73ea; transition: color 0.3s ease;">服務</a></li>
+                  <li><a href="#" class="nav-link" style="text-decoration: none; color: #2e73ea; transition: color 0.3s ease;">聯絡我們</a></li>
+                </ul>
+              </nav>
+              <div class="component-info">CSS: .navbar-brand | 主導航列</div>
+            </div>
+
+            <h3 class="heading-style-h4">表單組件</h3>
+            <div class="component-showcase">
+              <div style="max-width: 400px;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">電子郵件</label>
+                  <input type="email" class="form-field" style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; transition: border-color 0.3s ease; font-size: 1rem;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">訊息內容</label>
+                  <textarea class="form-field" style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; min-height: 100px; transition: border-color 0.3s ease; resize: vertical; font-size: 1rem;" placeholder="請輸入您的訊息..."></textarea>
+                </div>
+                <button class="button w-button">發送訊息</button>
+              </div>
+              <div class="component-info">CSS: .form-field | 聯絡表單元件</div>
+            </div>
+            
+            <h3 class="heading-style-h4">卡片組件</h3>
+            <div class="component-showcase">
+              <!-- 特色卡片 -->
+              <div class="home_features-list_item" style="max-width: 300px; margin-bottom: 2rem;">
+                <div class="margin-bottom margin-small">
+                  <div class="home_features-list_item-icon-wrapper">
+                    <div class="icon-1x1-medium" style="width: 48px; height: 48px; background: #2e73ea; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">AI</div>
+                  </div>
+                </div>
+                <div class="margin-bottom margin-small">
+                  <h3 class="heading-style-h4">Mission 卡片</h3>
+                </div>
+                <p class="text-size-medium">這是一個示例特色卡片組件，用於展示 Mission/Vision/Values。</p>
+              </div>
+              <div class="component-info">CSS: .home_features-list_item | 帶有 hover 效果的特色卡片</div>
+              
+              <!-- 團隊成員卡片 -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div class="team_list-item" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                  <div class="team_list-item_image-wrapper" style="margin-bottom: 1rem;">
+                    <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #666;">👤</div>
+                  </div>
+                  <div class="margin-bottom margin-xsmall">
+                    <h4 class="heading-style-h4">團隊成員</h4>
+                  </div>
+                  <div class="text-weight-semibold">職位名稱</div>
+                  <p class="text-size-medium" style="margin-top: 0.5rem;">專業領域簡介和經驗描述。</p>
+                </div>
+                <div class="team_list-item" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+                  <div class="team_list-item_image-wrapper" style="margin-bottom: 1rem;">
+                    <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #666;">👤</div>
+                  </div>
+                  <div class="margin-bottom margin-xsmall">
+                    <h4 class="heading-style-h4">團隊成員</h4>
+                  </div>
+                  <div class="text-weight-semibold">職位名稱</div>
+                  <p class="text-size-medium" style="margin-top: 0.5rem;">專業領域簡介和經驗描述。</p>
+                </div>
+              </div>
+              <div class="component-info">CSS: .team_list-item | 團隊成員介紹卡片</div>
+            </div>
+            
+            <h3 class="heading-style-h4">間距系統</h3>
+            <div class="spacing-showcase">
+              <div class="spacing-item">
+                <div class="margin-bottom margin-xsmall" style="background: #d5e3fa; padding: 8px; border-radius: 4px;">
+                  <strong>Extra Small</strong> - .margin-xsmall
+                </div>
+                <div class="spacing-info">用於小元件間距</div>
+              </div>
+              
+              <div class="spacing-item">
+                <div class="margin-bottom margin-small" style="background: #d5e3fa; padding: 8px; border-radius: 4px;">
+                  <strong>Small</strong> - .margin-small
+                </div>
+                <div class="spacing-info">用於一般元件間距</div>
+              </div>
+              
+              <div class="spacing-item">
+                <div class="margin-bottom margin-medium" style="background: #d5e3fa; padding: 8px; border-radius: 4px;">
+                  <strong>Medium</strong> - .margin-medium
+                </div>
+                <div class="spacing-info">用於區段間距</div>
+              </div>
+              
+              <div class="spacing-item">
+                <div class="margin-bottom margin-large" style="background: #d5e3fa; padding: 8px; border-radius: 4px;">
+                  <strong>Large</strong> - .margin-large
+                </div>
+                <div class="spacing-info">用於大區段間距</div>
+              </div>
+              
+              <div class="spacing-item">
+                <div class="margin-bottom margin-xxlarge" style="background: #d5e3fa; padding: 8px; border-radius: 4px;">
+                  <strong>Extra Large</strong> - .margin-xxlarge
+                </div>
+                <div class="spacing-info">用於主要版面區塊間距</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Effects -->
+          <div class="style-guide-section">
+            <h2 class="heading-style-h2">互動效果 (Interactive Effects)</h2>
+            <p class="text-size-medium">網站中使用的動畫和互動效果</p>
+            
+            <h3 class="heading-style-h4">動畫效果</h3>
+            <div class="effects-showcase">
+              <div class="effect-item">
+                <strong>淡入動畫</strong>
+                <div class="effect-info">CSS: .fade-in-element | 滾動時觸發的淡入效果</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  透明度從 0 → 1，配合 translateY(20px) → translateY(0)
+                </div>
+              </div>
+              
+              <div class="effect-item">
+                <strong>卡片 Hover 效果</strong>
+                <div class="effect-info">team_list-item 和 home_features-list_item</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  transform: translateY(-10px) scale(1.02)<br>
+                  box-shadow: 0 20px 25px rgba(0,0,0,0.1)
+                </div>
+              </div>
+              
+              <div class="effect-item">
+                <strong>按鈕互動效果</strong>
+                <div class="effect-info">所有 .button 和 .w-button</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  Hover: translateY(-2px) + 陰影增強<br>
+                  光澤掃過效果 (::before 偽元素)
+                </div>
+              </div>
+              
+              <div class="effect-item">
+                <strong>導航列滾動效果</strong>
+                <div class="effect-info">scroll 事件觸發的背景變化</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  backdrop-filter: blur(10px)<br>
+                  background: rgba(255,255,255,0.95)
+                </div>
+              </div>
+              
+              <div class="effect-item">
+                <strong>表單聚焦效果</strong>
+                <div class="effect-info">input 和 textarea 元件</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  border-color: #2e73ea<br>
+                  outline: 2px solid rgba(46,115,234,0.2)
+                </div>
+              </div>
+            </div>
+            
+            <h3 class="heading-style-h4">載入動畫</h3>
+            <div class="effects-showcase">
+              <div class="effect-item">
+                <strong>頁面載入動畫</strong>
+                <div class="effect-info">interactive-effects.js 控制的頁面進入動畫</div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+                  元素依序淡入，配合滾動觸發效果
+                </div>
+              </div>
+            </div>
+            
+            <h3 class="heading-style-h4">響應式設計</h3>
+            <div class="responsive-info">
+              <div class="breakpoint-item">
+                <strong>桌面版</strong> - 大於 986px
+                <div>完整導航、多欄布局</div>
+              </div>
+              
+              <div class="breakpoint-item">
+                <strong>平板版</strong> - 987px - 480px
+                <div>簡化導航、單欄布局</div>
+              </div>
+              
+              <div class="breakpoint-item">
+                <strong>手機版</strong> - 小於 480px
+                <div>最小化導航、堆疊布局、優化觸控</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="style-guide-section">
+            <div class="text-align-center">
+              <h3 class="heading-style-h4">AltaTech 設計系統 v1.0</h3>
+              <p class="text-size-small">最後更新: 2025年</p>
+              <div class="margin-top margin-medium">
+                <a href="index.html" class="button is-secondary w-button">返回首頁</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
