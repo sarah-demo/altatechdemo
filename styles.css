@@ -185,7 +185,7 @@ td, th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  font-family: webflow-icons !important;
+  font-family: webflow-icons, monospace !important;
 }
 
 .w-icon-slider-right:before {
@@ -2068,10 +2068,6 @@ li {
   padding-left: .5rem;
 }
 
-img {
-  max-width: 100%;
-  display: inline-block;
-}
 
 label {
   margin-bottom: .25rem;
@@ -3585,7 +3581,7 @@ figcaption {
   inset: auto 0% 0% auto;
 }
 
-.slider-arrow.is-centre-previous, .slider-arrow.is-centre-next {
+.slider-arrow.is-center-previous, .slider-arrow.is-center-next {
   bottom: 4rem;
 }
 

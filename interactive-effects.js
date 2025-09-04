@@ -134,30 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 平滑滾動到錨點
     function initSmoothScroll() {
-        // 暫時停用自訂滾動功能以避免與 Webflow 衝突
+        // 停用自訂滾動功能以避免與 Webflow 衝突
         console.log('Smooth scroll disabled to prevent conflicts with Webflow');
         return;
-        
-        const links = document.querySelectorAll('a[href^="#"]:not(.w-nav-link)');
-        
-        links.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
-                
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    e.preventDefault();
-                    const offsetTop = target.offsetTop - 100;
-                    
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     }
     
     // 按鈕點擊波紋效果
@@ -290,7 +269,3 @@ function forceFixScrollbars() {
   });
 }
 
-// 頁面載入後執行 - 暫時註解掉因為可能影響顯示
-// document.addEventListener('DOMContentLoaded', forceFixScrollbars);
-// window.addEventListener('load', forceFixScrollbars);
-// window.addEventListener('resize', forceFixScrollbars);

@@ -14,7 +14,7 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="AltaTech - 數據驅動 智能未來"/>
   <meta property="og:description" content="專注於大數據應用與人工智慧驅動企業轉型，提供 AI Agent 解決方案"/>
-  <meta property="og:image" content="img/logo-hero.png"/>
+  <meta property="og:image" content="img/about-image.png"/>
   <meta property="og:type" content="website"/>
   
   <!-- Twitter Card Meta Tags -->
@@ -31,6 +31,7 @@
   
   <!-- Preload important resources -->
   <link rel="preload" href="img/logo-hero.png" as="image"/>
+  <link rel="preload" href="img/logo-navbar.png" as="image"/>
   
   <link href="styles.css" rel="stylesheet" type="text/css"/>
   
@@ -285,17 +286,22 @@
       transform: scale(1.1) rotate(5deg);
     }
     
-    /* 滾動觸發的淡入動畫 */
+    /* 頁面載入直接觸發的淡入動畫 */
     .fade-in-element {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .fade-in-element.animate {
       opacity: 1;
       transform: translateY(0);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     /* 按鈕動畫效果 */
@@ -643,11 +649,7 @@
         checkScriptIntegrity();
         protectConsole();
         
-        // 反右鍵和快捷鍵保護
-        document.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          return false;
-        });
+        // 右鍵功能已開啟
         
         document.addEventListener('keydown', function(e) {
           // 禁用 F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S 等

@@ -13,7 +13,7 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="隱私權政策 - AltaTech"/>
   <meta property="og:description" content="了解我們如何保護您的個人資料與隱私權益"/>
-  <meta property="og:image" content="img/logo-hero.png"/>
+  <meta property="og:image" content="img/about-image.png"/>
   <meta property="og:type" content="website"/>
   
   <!-- Security Headers -->
@@ -25,8 +25,43 @@
   
   <!-- Preload important resources -->
   <link rel="preload" href="img/logo-hero.png" as="image"/>
+  <link rel="preload" href="img/logo-navbar.png" as="image"/>
   
   <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    .navbar1_component {
+      width: 100%;
+      max-width: 100%;
+    }
+    .navbar1_container {
+      max-width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .navbar1_logo {
+      width: 230px;
+      max-width: none;
+    }
+    @media (max-width: 1024px) and (min-width: 768px) {
+      /* iPad 版本保持不變 */
+      .navbar1_logo {
+        width: 230px;
+        max-width: 90vw;
+      }
+    }
+    @media (max-width: 767px) {
+      /* 手機版本保持不變 */
+      .navbar1_logo {
+        width: 96vw;
+        max-width: 230px;
+      }
+    }
+  </style>
   <script type="text/javascript" data-legitimate="true">
     !function(o,c){
       var n=c.documentElement,t=" w-mod-";
@@ -94,11 +129,7 @@
         checkReferrer();
         protectConsole();
         
-        // 反右鍵和快捷鍵保護
-        document.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          return false;
-        });
+        // 右鍵功能已開啟
         
         document.addEventListener('keydown', function(e) {
           // 禁用 F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S 等
@@ -144,29 +175,12 @@
   <div class="page-wrapper">
     <div class="global-styles"></div>
     <div class="div-block-6"></div>
-    <div data-animation="default" class="navbar1_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="d3b25dff-1ec2-964e-3574-e831ff206f3b" role="banner" data-duration="400">
+    <div class="navbar1_component" role="banner">
       <div class="navbar1_container">
-        <a href="index.html" class="navbar1_logo-link w-nav-brand">
+        <a href="index.html" class="navbar1_logo-link">
           <img width="230" sizes="(max-width: 479px) 96vw, 230px" alt="AltaTech 公司標誌" src="img/logo-navbar.png" loading="lazy" class="navbar1_logo"/>
         </a>
         <div class="div-block-10"></div>
-        <nav role="navigation" class="navbar1_menu is-page-height-tablet w-nav-menu">
-          <div class="navbar1_menu-links">
-            <a href="english.html" class="navbar1_link w-nav-link">English</a>
-          </div>
-          <div class="navbar1_menu-buttons">
-            <a href="#hs-form" class="button is-secondary is-small w-button">聯繫我們</a>
-          </div>
-        </nav>
-        <div class="navbar1_menu-button w-nav-button">
-          <div class="menu-icon1">
-            <div class="menu-icon1_line-top"></div>
-            <div class="menu-icon1_line-middle">
-              <div class="menu-icon1_line-middle-inner"></div>
-            </div>
-            <div class="menu-icon1_line-bottom"></div>
-          </div>
-        </div>
       </div>
     </div>
     

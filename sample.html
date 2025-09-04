@@ -196,11 +196,7 @@
         checkReferrer();
         protectConsole();
         
-        // 反右鍵和快捷鍵保護
-        document.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          return false;
-        });
+        // 右鍵功能已開啟
         
         document.addEventListener('keydown', function(e) {
           // 禁用 F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S 等
