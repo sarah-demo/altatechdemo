@@ -8,21 +8,29 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="ALTA TECH LTD. focuses on big data applications and AI-driven enterprise transformation, providing AI Agent solutions, data intelligence product development, and custom project development services"/>
   <meta name="keywords" content="AI, Artificial Intelligence, Big Data, Enterprise Transformation, Data Analytics, AI Agent, Data Intelligence"/>
-  <meta name="author" content="AltaTech"/>
+  <meta name="author" content="ALTA TECH"/>
   
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="AltaTech - Data-Driven Intelligent Future"/>
+  <meta property="og:title" content="ALTA TECH - Data-Driven Intelligent Future"/>
   <meta property="og:description" content="Focus on big data applications and AI-driven enterprise transformation, providing AI Agent solutions"/>
   <meta property="og:image" content="img/about-image.png"/>
   <meta property="og:type" content="website"/>
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="AltaTech - Data-Driven Intelligent Future"/>
+  <meta name="twitter:title" content="ALTA TECH - Data-Driven Intelligent Future"/>
   <meta name="twitter:description" content="Focus on big data applications and AI-driven enterprise transformation"/>
   
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PRTSFN96');</script>
+  <!-- End Google Tag Manager -->
+  
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; child-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; media-src 'self'; object-src 'none'; child-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -210,16 +218,54 @@
         padding-right: 1rem;
       }
       
-      /* 標題響應式調整 */
+    /* 字級設定 - H1 32px, H2 28px, H3 24px, H4 20px, P 16px */
+    .heading-style-h1 {
+      font-size: 32px !important;
+      line-height: 1.2 !important;
+    }
+    
+    .heading-style-h2 {
+      font-size: 28px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .heading-style-h3 {
+      font-size: 24px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .heading-style-h4 {
+      font-size: 20px !important;
+      line-height: 1.4 !important;
+    }
+    
+    p {
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+    }
+    
+    /* 手機版響應式調整 */
+    @media (max-width: 768px) {
       .heading-style-h1 {
-        font-size: 2rem !important;
-        line-height: 1.2 !important;
+        font-size: 24px !important;
       }
       
       .heading-style-h2 {
-        font-size: 1.5rem !important;
-        line-height: 1.3 !important;
+        font-size: 20px !important;
       }
+      
+      .heading-style-h3 {
+        font-size: 18px !important;
+      }
+      
+      .heading-style-h4 {
+        font-size: 16px !important;
+      }
+      
+      p {
+        font-size: 14px !important;
+      }
+    }
       
       /* 按鈕響應式調整 */
       .button {
@@ -229,11 +275,13 @@
       
       /* 文字大小調整 */
       .text-size-large {
-        font-size: 1.1rem !important;
+        font-size: 18px !important;
+        line-height: 1.5 !important;
       }
       
       .text-size-medium {
-        font-size: 1rem !important;
+        font-size: 16px !important;
+        line-height: 1.5 !important;
       }
       
       /* 確保圖片不超出容器 */
@@ -697,6 +745,10 @@
   </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRTSFN96"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="page-wrapper">
     <div class="global-styles"></div>
     <div class="div-block-6"></div>
@@ -710,7 +762,7 @@
           <a href="index.html" class="navbar1_link w-nav-link">中文</a>
         </div>
         <div class="navbar1_menu-buttons desktop-nav">
-          <a href="#hs-form" class="button is-secondary is-small w-button">Contact Us</a>
+          <a href="#contact" class="button is-secondary is-small w-button">Contact Us</a>
         </div>
         <div class="navbar1_menu-links mobile-nav">
           <a href="index.html" class="navbar1_link">中文</a>
@@ -728,14 +780,16 @@
                 <div class="text-align-center">
                   <div class="max-width-large align-center">
                     <div>
-                      <img src="img/logo-hero.png" loading="eager" width="540" sizes="(max-width: 767px) 100vw, 540px" alt="AltaTech Main Logo - Data-Driven Intelligent Future" class="hero-logo"/>
+                      <h1 class="heading-style-h1">
+                        <img src="img/logo-hero.png" loading="eager" width="540" sizes="(max-width: 767px) 100vw, 540px" alt="AltaTech Main Logo - Data-Driven Intelligent Future" class="hero-logo"/>
+                      </h1>
                       <div class="div-block"></div>
                     </div>
-                    <p class="text-size-medium">ALTA TECH LTD. was founded in 2024, focusing on driving enterprise transformation through big data applications and artificial intelligence. We specialize in providing solutions for finance, manufacturing, and retail sectors, working hand-in-hand with clients to achieve digital and intelligent transformation.<br/></p>
+                    <p class="text-size-medium">ALTA TECH LTD. was founded in 2024, focusing on driving enterprise transformation through big data applications and artificial intelligence.<br/><br/>We specialize in providing solutions for finance, manufacturing, and retail sectors, working hand-in-hand with clients to achieve digital and intelligent transformation.<br/></p>
                     <div class="margin-top margin-medium">
                       <div class="button-group is-center">
                         <a href="#services" class="button w-button">Our Services</a>
-                        <a href="#hs-form" class="button is-secondary w-button">Contact Us</a>
+                        <a href="#contact" class="button is-secondary w-button">Contact Us</a>
                       </div>
                     </div>
                   </div>
@@ -756,7 +810,6 @@
                   <div class="text-align-center">
                     <div class="max-width-large align-center">
                       <div class="margin-bottom margin-xsmall">
-                        <div class="text-style-tagline">AltaTech</div>
                       </div>
                       <div class="margin-bottom margin-small">
                         <h2 class="heading-style-h2">Company Mission</h2>
@@ -775,7 +828,7 @@
                       </div>
                     </div>
                     <div class="margin-bottom margin-small">
-                      <h3 class="heading-style-h4">Mission<br/>Data-Driven Intelligent Future</h3>
+                      <h4 class="heading-style-h4">Mission<br/>Data-Driven Intelligent Future</h4>
                     </div>
                     <p>Big Data integrated with AI Agent<br/>Exploration and Development<br/>Next-gen Data Intelligence Products</p>
                     <div class="div-block-8"></div>
@@ -789,7 +842,7 @@
                       </div>
                     </div>
                     <div class="margin-bottom margin-small">
-                      <h3 class="heading-style-h4">Vision<br/>Excellence & Growth Mindset</h3>
+                      <h4 class="heading-style-h4">Vision<br/>Excellence & Growth Mindset</h4>
                     </div>
                     <p>Co-create with clients<br/>Using Data & AI Technology<br/>Dual-engine business growth</p>
                     <div class="div-block-8"></div>
@@ -803,7 +856,7 @@
                       </div>
                     </div>
                     <div class="margin-bottom margin-small">
-                      <h3 class="heading-style-h4">Values<br/>Partnering for Mutual Success</h3>
+                      <h4 class="heading-style-h4">Values<br/>Partnering for Mutual Success</h4>
                     </div>
                     <p>Creating value for clients<br/>Enabling growth for teams<br/>and both brands</p>
                     <div class="div-block-8"></div>
@@ -817,23 +870,21 @@
       </section>
       
       <section id="services" class="section_home_about fade-in-element">
-        <div class="div-block-3">
+        <div class="div-block-3" style="background: linear-gradient(135deg, #a8c8ff 0%, #c2b8e6 100%);">
           <div class="container-large">
             <div class="padding-section-large">
               <div class="home_about_component">
                 <div class="w-layout-grid home_about_content">
                   <div class="home_about_content-left">
                     <div>
-                      <div class="text-style-tagline">AltaTech</div>
                     </div>
-                    <h2>Our Services</h2>
+                    <h2 class="heading-style-h2" style="color: #333;">Our Services</h2>
                   </div>
                   <div class="home_about_content-right">
-                    <p class="text-size-medium">Our services encompass AI Agent solutions, data intelligence product development, and custom project development. With our mission of "Data-Driven, Intelligent Future," we continuously deliver value and growth to our clients.</p>
                     <div class="margin-top margin-medium">
                       <div class="button-group">
                         <a href="#case" class="button is-secondary w-button" onclick="event.preventDefault(); document.getElementById('case').scrollIntoView({behavior: 'smooth', block: 'start'});">AI Agent</a>
-                        <a href="#hs-form" class="button is-link is-icon w-inline-block">
+                        <a href="#contact" class="button is-link is-icon w-inline-block">
                           <div>Contact Expert</div>
                           <div class="icon-embed-xxsmall w-embed">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -859,10 +910,10 @@
                 <div class="w-layout-grid home_benefits-1_content">
                   <div class="home_benefits-1_content-left">
                     <div class="margin-bottom margin-small">
-                      <h2 class="heading-style-h3" id="case">Helping Enterprises Achieve Data & AI Transformation</h2>
+                      <h3 class="heading-style-h3" id="case">Helping Enterprises Achieve Data & AI Transformation</h3>
                     </div>
                     <div class="margin-bottom margin-small">
-                      <p class="text-size-medium">Utilizing cutting-edge AI and data analytics technologies to create exceptional business value for enterprises</p>
+                      <p class="text-size-medium" style="text-align: left;">Utilizing cutting-edge AI and data analytics technologies to create exceptional business value for enterprises</p>
                     </div>
                     <ul role="list" class="home_benefits-1_list">
                       <li class="home_benefits-1_item">
@@ -921,8 +972,8 @@
       </section>
 
               <div class="button-group">
-                <a href="#hs-form" class="button is-secondary w-button">Book Demo</a>
-                <a href="#hs-form" class="button is-link is-icon w-inline-block">
+                <a href="#contact" class="button is-secondary w-button">Book Demo</a>
+                <a href="#contact" class="button is-link is-icon w-inline-block">
                   <div>Learn More</div>
                   <div class="icon-embed-xxsmall w-embed">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -936,96 +987,8 @@
         </div>
       </section>
       
-      <section id="team" class="section_home_team fade-in-element">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-large">
-              <div class="home_team_component">
-                <div class="margin-bottom margin-xxlarge">
-                  <div class="text-align-center">
-                    <div class="max-width-large align-center">
-                      <div class="margin-bottom margin-xsmall">
-                        <div class="text-style-tagline">AltaTech</div>
-                      </div>
-                      <div class="margin-bottom margin-small">
-                        <h2 class="heading-style-h2">Our Team</h2>
-                      </div>
-                      <p class="text-size-medium">With diverse backgrounds and professional expertise, building ALTATECH's competitive advantage</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="home_team_list-wrapper">
-                  <div class="w-layout-grid home_team_list">
-                    
-                    <div class="home_team_item" itemscope itemtype="https://schema.org/Person">
-                      <div class="margin-bottom margin-small">
-                        <div class="home_team_image-wrapper">
-                          <img loading="lazy" src="img/team-member-1.png" alt="Chairman Stony Fan Photo" class="home_team_image" itemprop="image"/>
-                        </div>
-                      </div>
-                      <div class="margin-bottom margin-xsmall">
-                        <div class="home_team_title-wrapper">
-                          <div class="text-size-large text-weight-semibold" itemprop="name"><strong>Stony Fan</strong></div>
-                          <div class="text-size-medium" itemprop="jobTitle"><em>Chairman</em></div>
-                        </div>
-                      </div>
-                      <p itemprop="description">With over 30 years of experience spanning product strategy, data operations, and enterprise management. Former head of financial information product R&D and General Manager of Financial Business Group at Systex. Combines business insight with product acumen, excels at identifying market opportunities, integrating resources, and driving new product growth and revenue conversion.</p>
-                    </div>
-                    
-                    <div class="home_team_item" itemscope itemtype="https://schema.org/Person">
-                      <div class="margin-bottom margin-small">
-                        <div class="home_team_image-wrapper">
-                          <img loading="lazy" src="img/team-member-2.png" alt="Co-Founder & CTO Richard Wu Photo" class="home_team_image" itemprop="image"/>
-                        </div>
-                      </div>
-                      <div class="margin-bottom margin-xsmall">
-                        <div class="home_team_title-wrapper">
-                          <div class="text-size-large text-weight-semibold" itemprop="name"><strong>Richard Wu</strong></div>
-                          <div class="text-size-medium" itemprop="jobTitle"><em>Co-Founder &amp; CTO</em></div>
-                        </div>
-                      </div>
-                      <p itemprop="description">With over 25 years of cross-industry experience in technology and finance, has long led transformations of 100+ member IT teams. Specializes in systematic organizational and platform architecture restructuring, ensuring technology truly serves business objectives, committed to building flexible and scalable AI infrastructure platforms.</p>
-                    </div>
-                    
-                    <div class="home_team_item" itemscope itemtype="https://schema.org/Person">
-                      <div class="margin-bottom margin-small">
-                        <div class="home_team_image-wrapper">
-                          <img sizes="(max-width: 540px) 100vw, 540px" alt="Product Director GTM Ken Yang Photo" src="img/team-member-3.jpg" loading="lazy" class="home_team_image" itemprop="image"/>
-                        </div>
-                      </div>
-                      <div class="margin-bottom margin-xsmall">
-                        <div class="home_team_title-wrapper">
-                          <div class="text-size-large text-weight-semibold" itemprop="name"><strong>Ken Yang</strong></div>
-                          <div class="text-size-medium" itemprop="jobTitle"><em>Product Director/GTM</em></div>
-                        </div>
-                      </div>
-                      <p itemprop="description">With over 5 years of hands-on experience spanning data analytics, enterprise consulting, and B2B product advisory. Specializes in deriving product direction from user needs, excels at cross-departmental resource integration and strategic advancement, with GTM strategy formulation and execution experience, driving SaaS product acceleration from 0 to 1.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="margin-top margin-xxlarge">
-                  <div class="text-align-center">
-                    <div class="max-width-medium align-center">
-                      <div class="margin-bottom margin-xsmall">
-                        <h3 class="heading-style-h4">Join Us!</h3>
-                      </div>
-                      <p class="text-size-medium">Welcome to join ALTATECH and create the future together</p>
-                      <div class="margin-top margin-medium">
-                        <div class="button-group is-center">
-                          <a href="#" target="_blank" rel="noopener noreferrer" class="button is-secondary w-button">View Job Openings</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <div class="div-block-5">
+      <div class="div-block-5" style="display: none;">
         <div class="div-block-4">
           <div class="div-block-6"></div>
           <h2 class="heading">Contact Us</h2>
@@ -1084,9 +1047,9 @@
                 </div>
               </div>
               <div class="margin-bottom margin-xsmall">
-                <h3 class="heading-style-h4">Email</h3>
+                <h4 class="heading-style-h4">Email</h4>
               </div>
-              <div class="margin-top margin-small">sales@altatech.ai</div>
+              <div class="margin-top margin-small"><a href="mailto:sales@altatech.ai">sales@altatech.ai</a></div>
             </div>
 
             <!-- Phone -->
@@ -1102,9 +1065,9 @@
                 </div>
               </div>
               <div class="margin-bottom margin-xsmall">
-                <h3 class="heading-style-h4">Phone</h3>
+                <h4 class="heading-style-h4">Phone</h4>
               </div>
-              <div class="margin-top margin-small">(02)2731-5900</div>
+              <div class="margin-top margin-small"><a href="tel:+886266050987">(02)6605-0987</a></div>
             </div>
 
             <!-- Office -->
@@ -1120,9 +1083,9 @@
                 </div>
               </div>
               <div class="margin-bottom margin-xsmall">
-                <h3 class="heading-style-h4">Office</h3>
+                <h4 class="heading-style-h4">Office</h4>
               </div>
-              <div class="margin-top margin-small">9F, No.168, Sec. 3, Nanjing E. Rd., Zhongshan Dist., Taipei City 104, Taiwan</div>
+              <div class="margin-top margin-small"><a href="https://www.google.com/maps/search/9F,+No.168,+Sec.+3,+Nanjing+E.+Rd.,+Zhongshan+Dist.,+Taipei+City+104,+Taiwan" target="_blank">9F, No.168, Sec. 3, Nanjing E. Rd., Zhongshan Dist., Taipei City 104, Taiwan</a></div>
             </div>
           </div>
         </div>
@@ -1142,7 +1105,7 @@
                   <img width="381" loading="lazy" alt="AltaTech Footer Logo" src="img/footer-logo.gif" class="footer7_logo"/>
                 </a>
                 <div class="w-layout-grid footer7_link-list">
-                  <a href="#hs-form" class="footer7_link">Contact Us</a>
+                  <a href="#contact" class="footer7_link">Contact Us</a>
                   <a href="#" target="_blank" rel="noopener noreferrer" class="footer7_link">Careers</a>
                   <a href="#" target="_blank" rel="noopener noreferrer" class="footer7_link">Facebook</a>
                   <a href="#" target="_blank" rel="noopener noreferrer" class="footer7_link">LinkedIn</a>
@@ -1152,10 +1115,9 @@
             <div class="divider-horizontal"></div>
             <div class="padding-top padding-medium">
               <div class="footer7_bottom-wrapper">
-                <div class="footer7_credit-text">© 2025 AltaTech. All rights reserved.</div>
+                <div class="footer7_credit-text">© 2025 ALTA TECH LTD. All rights reserved.</div>
                 <div class="w-layout-grid footer7_legal-list">
                   <a href="privacy.html" class="footer7_legal-link">Privacy Policy</a>
-                  <a href="privacy.html" class="footer7_legal-link">Cookie Settings</a>
                 </div>
               </div>
             </div>
