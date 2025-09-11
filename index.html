@@ -1868,16 +1868,18 @@
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
-                // 允許 GTM 相關的腳本和彈窗腳本
+                // 允許 GTM 相關的腳本和 Live Chat 腳本
                 const src = node.src || '';
-                const isGTMRelated = src.includes('googletagmanager.com') || 
-                                   src.includes('google-analytics.com') ||
-                                   src.includes('tagmanager.google.com') ||
-                                   node.innerHTML.includes('gtag') ||
-                                   node.innerHTML.includes('dataLayer') ||
-                                   node.innerHTML.includes('GTM-');
+                const isAllowedScript = src.includes('googletagmanager.com') || 
+                                       src.includes('google-analytics.com') ||
+                                       src.includes('tagmanager.google.com') ||
+                                       src.includes('achat.alta-di.com') ||
+                                       node.innerHTML.includes('gtag') ||
+                                       node.innerHTML.includes('dataLayer') ||
+                                       node.innerHTML.includes('GTM-') ||
+                                       node.innerHTML.includes('achat');
                 
-                if (!isGTMRelated) {
+                if (!isAllowedScript) {
                   console.warn('Unauthorized script injection detected:', node);
                   node.remove();
                 }
@@ -1896,7 +1898,7 @@
   </script>
   
   <!-- Live Chat Integration -->
-  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async></script>
+  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async data-legitimate></script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->

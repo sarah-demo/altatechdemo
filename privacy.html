@@ -844,8 +844,15 @@
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
-                console.warn('Unauthorized script injection detected:', node);
-                node.remove();
+                // 允許 Live Chat 腳本
+                const src = node.src || '';
+                const isAllowedScript = src.includes('achat.alta-di.com') ||
+                                       node.innerHTML.includes('achat');
+                
+                if (!isAllowedScript) {
+                  console.warn('Unauthorized script injection detected:', node);
+                  node.remove();
+                }
               }
             }
           });
@@ -861,7 +868,7 @@
   </script>
   
   <!-- Live Chat Integration -->
-  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async></script>
+  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async data-legitimate></script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
