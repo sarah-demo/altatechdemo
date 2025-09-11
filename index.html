@@ -31,7 +31,7 @@
   <!-- End Google Tag Manager -->
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; media-src 'self'; object-src 'none'; child-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -57,6 +57,27 @@
       opacity: 1 !important;
       visibility: visible !important;
       display: inline-block !important;
+    }
+    
+    /* GTM 彈窗支援 */
+    [id*="gtm"], [class*="gtm"], [data-gtm], .gtm-popup, .gtm-modal {
+      z-index: 999999 !important;
+      position: fixed !important;
+      pointer-events: auto !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      display: block !important;
+    }
+    
+    /* 確保彈窗背景遮罩正常顯示 */
+    .gtm-overlay, [class*="overlay"][id*="gtm"], [class*="backdrop"][id*="gtm"] {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 999998 !important;
+      display: block !important;
     }
     
     /* 互動效果樣式 */
@@ -267,13 +288,91 @@
       p {
         font-size: 14px !important;
       }
-    }
       
       /* 按鈕響應式調整 */
-      .button {
-        padding: 0.8rem 1.5rem !important;
+      .button, .w-button {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+        border-radius: 16px !important;
+      }
+
+      .button.is-small, .w-button.is-small {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        border-radius: 12px !important;
+      }
+
+      .submit-button {
+        padding: 12px 24px !important;
         font-size: 14px !important;
       }
+
+      .footer7_link {
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+        border-radius: 12px !important;
+      }
+
+      /* Mission/Vision/Values 卡片手機版調整 */
+      .home_features-list_item {
+        padding: 24px 16px !important;
+        border-radius: 20px !important;
+      }
+
+      .home_features-list_item-icon-wrapper {
+        padding: 12px !important;
+        border-radius: 16px !important;
+      }
+
+      /* 服務區塊響應式設計 - 保持三欄但調整間距 */
+      .services-grid {
+        gap: 20px !important;
+        margin-top: 40px !important;
+      }
+
+      .service-card {
+        padding: 24px !important;
+        border-radius: 20px !important;
+      }
+
+      .service-icon-wrapper {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 16px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .service-icon {
+        font-size: 24px !important;
+      }
+
+      .service-features li {
+        font-size: 14px !important;
+        padding: 6px 0 !important;
+        padding-left: 24px !important;
+      }
+
+      .service-features li::before {
+        font-size: 14px !important;
+        top: 6px !important;
+        width: 18px !important;
+      }
+    }
+
+    /* 中等屏幕（平板）- 兩欄排列 */
+    @media (max-width: 900px) and (min-width: 481px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        max-width: 800px !important;
+      }
+      
+      .service-card:nth-child(3) {
+        grid-column: 1 / -1;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
       
       /* 文字大小調整 */
       .text-size-large {
@@ -314,24 +413,62 @@
       }
   
     
-    /* Mission/Vision/Values卡片hover效果 */
+    /* Mission/Vision/Values 圓角卡片樣式 */
     .home_features-list_item {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border: 1px solid #e1e8ed;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
     
     .home_features-list_item:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.15);
     }
-    
+
+    /* 為每張卡片添加不同的頂部顏色條 */
+    .home_features-list_item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .home_features-list_item:nth-child(1)::before {
+      background: linear-gradient(90deg, #2E73EA, #1e5bb8);
+    }
+
+    .home_features-list_item:nth-child(2)::before {
+      background: linear-gradient(90deg, #3cc1c0, #20b2aa);
+    }
+
+    .home_features-list_item:nth-child(3)::before {
+      background: linear-gradient(90deg, #fed105, #ffa500);
+    }
+
+    /* 圖標容器樣式優化 */
     .home_features-list_item-icon-wrapper {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 20px;
+      padding: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
     }
-    
+
     .home_features-list_item:hover .home_features-list_item-icon-wrapper {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
     }
     
     /* 頁面載入直接觸發的淡入動畫 */
@@ -443,18 +580,270 @@
       border-color: #007bff;
     }
     
+    /* 表單提交按鈕特殊樣式 */
     .submit-button {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      border-radius: 20px !important;
+      padding: 14px 28px !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      border: none !important;
+      box-shadow: 0 8px 25px rgba(46, 115, 234, 0.3) !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      position: relative !important;
+      overflow: hidden !important;
     }
     
     .submit-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
     }
     
     .submit-button.loading {
       opacity: 0.7;
       pointer-events: none;
+    }
+
+    /* 提交按鈕光澤效果 */
+    .submit-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      transition: transform 0.6s ease;
+    }
+
+    .submit-button:hover::before {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+
+    /* Footer 鏈接按鈕樣式 */
+    .footer7_link {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+      color: #5a6c7d !important;
+      border-radius: 16px !important;
+      padding: 10px 18px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      border: 1px solid #e1e8ed !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+    }
+
+    .footer7_link:hover {
+      transform: translateY(-2px) scale(1.02) !important;
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      box-shadow: 0 8px 20px rgba(46, 115, 234, 0.3) !important;
+    }
+
+    /* 導覽列按鈕樣式統一 */
+    .navbar1_menu-buttons .button, .navbar1_menu-buttons .w-button {
+      white-space: nowrap !important;
+      min-width: fit-content !important;
+    }
+
+    /* 確保所有按鈕都有一致的基礎樣式 */
+    input[type="submit"], button[type="submit"], .w-button[type="submit"] {
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      border-radius: 20px !important;
+      padding: 14px 28px !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      border: none !important;
+      box-shadow: 0 8px 25px rgba(46, 115, 234, 0.3) !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      cursor: pointer !important;
+    }
+
+    input[type="submit"]:hover, button[type="submit"]:hover, .w-button[type="submit"]:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
+    }
+
+    /* 我們的服務區塊全新設計 */
+    .services-background {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 25%, #2E73EA 50%, #3182ce 75%, #4299e1 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      opacity: 0.3;
+    }
+
+    .services_component {
+      position: relative;
+      z-index: 1;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* 確保桌面版強制三欄 */
+    @media (min-width: 901px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 30px !important;
+      }
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      width: 100%;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .service-card.ai-agent::before {
+      background: linear-gradient(90deg, #2E73EA, #1e5bb8);
+    }
+
+    .service-card.data-intelligence::before {
+      background: linear-gradient(90deg, #3cc1c0, #20b2aa);
+    }
+
+    .service-card.custom-development::before {
+      background: linear-gradient(90deg, #fed105, #ffa500);
+    }
+
+    .service-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      margin-bottom: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon-wrapper {
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .service-title {
+      color: #2c3e50;
+      margin-bottom: 16px;
+    }
+
+    .service-description {
+      color: #5a6c7d;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+    }
+
+    .service-features li {
+      padding: 8px 0;
+      color: #5a6c7d;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+      padding-left: 28px;
+      text-align: left;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: #2E73EA;
+      font-weight: bold;
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .service-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-cta {
+      margin-top: auto;
+      border-top: 1px solid #e1e8ed;
+      padding-top: 20px;
+    }
+
+    .service-link {
+      color: #2E73EA;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-link:hover {
+      color: #1e5bb8;
+      transform: translateX(4px);
     }
     
     /* 成功和錯誤訊息動畫 */
@@ -617,6 +1006,91 @@
       }
     }
     
+    /* 新的 3D 圓角按鈕系統 - 參考卡片風格 */
+    .button, .w-button {
+      border-radius: 20px !important;
+      padding: 12px 24px !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      line-height: 1.4 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      cursor: pointer !important;
+      border: none !important;
+      position: relative !important;
+      overflow: hidden !important;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    /* 主要按鈕 - 藍色主題 */
+    .button:not(.is-secondary):not(.is-link), .w-button:not(.is-secondary):not(.is-link) {
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      box-shadow: 0 8px 25px rgba(46, 115, 234, 0.3) !important;
+    }
+
+    .button:not(.is-secondary):not(.is-link):hover, .w-button:not(.is-secondary):not(.is-link):hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
+    }
+
+    /* 次要按鈕 - 白色背景 */
+    .button.is-secondary, .w-button.is-secondary {
+      background: linear-gradient(135deg, #ffffff, #f8f9fa) !important;
+      color: #2E73EA !important;
+      border: 2px solid #2E73EA !important;
+      box-shadow: 0 6px 20px rgba(46, 115, 234, 0.15) !important;
+    }
+
+    .button.is-secondary:hover, .w-button.is-secondary:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
+    }
+
+    /* 鏈接按鈕 - 簡潔風格 */
+    .button.is-link, .w-button.is-link {
+      background: transparent !important;
+      color: #2E73EA !important;
+      box-shadow: none !important;
+      border: 2px solid transparent !important;
+      padding: 8px 16px !important;
+    }
+
+    .button.is-link:hover, .w-button.is-link:hover {
+      background: rgba(46, 115, 234, 0.1) !important;
+      border-radius: 16px !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* 小型按鈕 */
+    .button.is-small, .w-button.is-small {
+      padding: 8px 16px !important;
+      font-size: 14px !important;
+      border-radius: 16px !important;
+    }
+
+    /* 按鈕光澤效果 */
+    .button::before, .w-button::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -50% !important;
+      left: -50% !important;
+      width: 200% !important;
+      height: 200% !important;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent) !important;
+      transform: translateX(-100%) translateY(-100%) rotate(45deg) !important;
+      transition: transform 0.6s ease !important;
+    }
+
+    .button:hover::before, .w-button:hover::before {
+      transform: translateX(100%) translateY(100%) rotate(45deg) !important;
+    }
+    
     /* Cards 完整樣式 */
     .feature-card {
       background: #ffffff;
@@ -643,6 +1117,7 @@
       box-shadow: 0 16px 50px rgba(0,0,0,0.15);
       height: auto;
       min-height: 280px;
+      overflow: visible;
     }
 
     .feature-card::before {
@@ -677,7 +1152,60 @@
       font-size: 1rem;
       margin-right: 20px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Icon hover 動畫效果 */
+    .feature-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+      animation: pulse 1.5s infinite, bounce 0.6s ease;
+    }
+
+    /* 添加閃爍光澤效果 */
+    .feature-icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      transition: transform 0.6s ease;
+    }
+
+    .feature-icon:hover::before {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+
+    /* 不同主題的 hover 效果增強 */
+    .data-integration .feature-icon:hover {
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4);
+    }
+
+    .id-mapping .feature-icon:hover {
+      box-shadow: 0 12px 35px rgba(60, 193, 192, 0.4);
+    }
+
+    .visual-modeling .feature-icon:hover {
+      box-shadow: 0 12px 35px rgba(254, 209, 5, 0.4);
+    }
+
+    /* 添加脈動動畫 */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1.1) rotate(5deg) translateY(0); }
+      50% { transform: scale(1.15) rotate(5deg) translateY(-3px); }
     }
 
     .data-integration .feature-icon { background: linear-gradient(135deg, #2E73EA, #1e5bb8); }
@@ -689,7 +1217,8 @@
     }
 
     .card-title {
-      font-size: 1.8rem;
+      font-size: 24px;
+      line-height: 1.3;
       font-weight: 700;
       color: #2c3e50;
       margin-bottom: 8px;
@@ -697,10 +1226,94 @@
     }
 
     .card-subtitle {
-      font-size: 1.1rem;
+      font-size: 16px;
+      line-height: 1.5;
       color: #7f8c8d;
       font-weight: 500;
-      line-height: 1.4;
+    }
+
+    /* 展開/收合箭頭 */
+    .expand-arrow {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .expand-arrow::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border: 2px solid #666;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .expand-arrow {
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,0.9));
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .feature-card:hover .expand-arrow::before {
+      transform: rotate(-135deg);
+      border-color: #333;
+    }
+
+    /* 不同卡片的箭頭主題色 */
+    .feature-card.data-integration .expand-arrow {
+      background: linear-gradient(135deg, rgba(46, 115, 234, 0.1), rgba(255,255,255,0.9));
+      border: 1px solid rgba(46, 115, 234, 0.2);
+    }
+
+    .feature-card.data-integration:hover .expand-arrow {
+      background: linear-gradient(135deg, rgba(46, 115, 234, 0.15), rgba(255,255,255,1));
+      border: 1px solid rgba(46, 115, 234, 0.3);
+    }
+
+    .feature-card.data-integration:hover .expand-arrow::before {
+      border-color: #2E73EA;
+    }
+
+    .feature-card.id-mapping .expand-arrow {
+      background: linear-gradient(135deg, rgba(60, 193, 192, 0.1), rgba(255,255,255,0.9));
+      border: 1px solid rgba(60, 193, 192, 0.2);
+    }
+
+    .feature-card.id-mapping:hover .expand-arrow {
+      background: linear-gradient(135deg, rgba(60, 193, 192, 0.15), rgba(255,255,255,1));
+      border: 1px solid rgba(60, 193, 192, 0.3);
+    }
+
+    .feature-card.id-mapping:hover .expand-arrow::before {
+      border-color: #3cc1c0;
+    }
+
+    .feature-card.visual-modeling .expand-arrow {
+      background: linear-gradient(135deg, rgba(254, 209, 5, 0.1), rgba(255,255,255,0.9));
+      border: 1px solid rgba(254, 209, 5, 0.2);
+    }
+
+    .feature-card.visual-modeling:hover .expand-arrow {
+      background: linear-gradient(135deg, rgba(254, 209, 5, 0.15), rgba(255,255,255,1));
+      border: 1px solid rgba(254, 209, 5, 0.3);
+    }
+
+    .feature-card.visual-modeling:hover .expand-arrow::before {
+      border-color: #fed105;
     }
 
     .card-content {
@@ -742,7 +1355,8 @@
     }
 
     .section-title {
-      font-size: 0.9rem;
+      font-size: 18px;
+      line-height: 1.4;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -765,9 +1379,9 @@
     }
 
     .section-content {
-      font-size: 1rem;
+      font-size: 16px;
+      line-height: 1.5;
       color: #5a6c7d;
-      line-height: 1.6;
     }
 
     .feature-list {
@@ -777,7 +1391,7 @@
     .feature-item {
       padding: 8px 0;
       color: #5a6c7d;
-      font-size: 0.95rem;
+      font-size: 16px;
       line-height: 1.5;
       display: flex;
       align-items: center;
@@ -795,9 +1409,10 @@
 
     .data-sources {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 16px;
+      justify-items: center;
     }
 
     .data-source-tag {
@@ -809,6 +1424,8 @@
       font-size: 0.9rem;
       font-weight: 600;
       transition: all 0.3s ease;
+      white-space: nowrap;
+      width: 120px;
     }
 
     .data-source-tag:hover {
@@ -821,10 +1438,11 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(5, 40px);
-      gap: 10px;
-      max-width: 400px;
+      gap: 8px;
+      width: 100%;
+      max-width: 360px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 16px;
       background: linear-gradient(135deg, #f8f9fa, #e9ecef);
       border-radius: 16px;
       border: 2px solid #3cc1c0;
@@ -840,13 +1458,14 @@
     }
 
     .id-node {
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: white;
       margin-bottom: 4px;
-      min-width: 80px;
+      width: 100%;
+      max-width: 90px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: all 0.3s ease;
       cursor: pointer;
@@ -854,7 +1473,7 @@
 
     .id-node.primary {
       background: linear-gradient(135deg, #3cc1c0, #20b2aa);
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .id-node.secondary {
@@ -945,14 +1564,15 @@
     .step-title {
       font-weight: 700;
       color: #1f2937;
-      font-size: 1rem;
+      font-size: 16px;
+      line-height: 1.5;
       margin-bottom: 4px;
     }
 
     .step-description {
       color: #6b7280;
-      font-size: 0.9rem;
-      line-height: 1.4;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     /* Cards 響應式樣式 */
@@ -983,7 +1603,8 @@
       }
       
       .card-title {
-        font-size: 1.5rem !important;
+        font-size: 18px !important;
+        line-height: 1.3 !important;
       }
       
       .content-section {
@@ -992,20 +1613,22 @@
       }
       
       .data-sources {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        justify-items: center !important;
       }
       
       .id-diagram-grid {
         grid-template-rows: repeat(5, 35px) !important;
-        gap: 8px !important;
-        padding: 15px !important;
-        max-width: 350px !important;
+        gap: 6px !important;
+        padding: 12px !important;
+        max-width: 320px !important;
       }
       
       .id-node {
-        padding: 6px 12px !important;
-        font-size: 0.8rem !important;
-        min-width: 70px !important;
+        padding: 4px 8px !important;
+        font-size: 0.75rem !important;
+        max-width: 75px !important;
       }
       
       .id-node.primary {
@@ -1041,6 +1664,18 @@
         border-radius: 20px !important;
         height: 220px !important;
       }
+
+      /* 服務區塊手機版 - 單欄排列 */
+      .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        margin-top: 30px !important;
+      }
+
+      .service-card {
+        padding: 20px !important;
+        border-radius: 16px !important;
+      }
       
       .feature-icon {
         width: 60px !important;
@@ -1049,32 +1684,43 @@
       }
       
       .card-title {
-        font-size: 1.4rem !important;
+        font-size: 16px !important;
+        line-height: 1.4 !important;
       }
       
       .card-subtitle {
-        font-size: 1rem !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
       }
       
       .section-content {
-        font-size: 0.9rem !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
       }
       
       .data-sources {
         grid-template-columns: 1fr !important;
+        gap: 6px !important;
+        justify-items: center !important;
+      }
+      
+      .data-source-tag {
+        font-size: 0.8rem !important;
+        padding: 6px 12px !important;
+        width: 100px !important;
       }
       
       .id-diagram-grid {
-        max-width: 300px !important;
-        grid-template-rows: repeat(5, 30px) !important;
-        gap: 6px !important;
-        padding: 12px !important;
+        max-width: 280px !important;
+        grid-template-rows: repeat(5, 28px) !important;
+        gap: 4px !important;
+        padding: 10px !important;
       }
       
       .id-node {
-        padding: 4px 8px !important;
-        font-size: 0.7rem !important;
-        min-width: 60px !important;
+        padding: 3px 6px !important;
+        font-size: 0.65rem !important;
+        max-width: 65px !important;
       }
       
       .id-label {
@@ -1216,14 +1862,25 @@
         });
       });
       
-      // 監控 DOM 變化以防篡改
+      // 監控 DOM 變化以防篡改 - 允許 GTM 相關腳本
       const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
-                console.warn('Unauthorized script injection detected:', node);
-                node.remove();
+                // 允許 GTM 相關的腳本和彈窗腳本
+                const src = node.src || '';
+                const isGTMRelated = src.includes('googletagmanager.com') || 
+                                   src.includes('google-analytics.com') ||
+                                   src.includes('tagmanager.google.com') ||
+                                   node.innerHTML.includes('gtag') ||
+                                   node.innerHTML.includes('dataLayer') ||
+                                   node.innerHTML.includes('GTM-');
+                
+                if (!isGTMRelated) {
+                  console.warn('Unauthorized script injection detected:', node);
+                  node.remove();
+                }
               }
             }
           });
@@ -1363,30 +2020,85 @@
         </div>
       </section>
       
-      <section id="services" class="section_home_about fade-in-element">
-        <div class="div-block-3" style="background: linear-gradient(135deg, #a8c8ff 0%, #c2b8e6 100%);">
+      <section id="services" class="section_home_services fade-in-element">
+        <div class="services-background">
           <div class="container-large">
             <div class="padding-section-large">
-              <div class="home_about_component">
-                <div class="w-layout-grid home_about_content">
-                  <div class="home_about_content-left">
-                    <div>
+              <div class="services_component">
+                <!-- 標題區域 -->
+                <div class="text-align-center">
+                  <div class="max-width-large align-center">
+                    <div class="margin-bottom margin-small">
+                      <h2 class="heading-style-h2" style="color: white;">我們的服務</h2>
                     </div>
-                    <h2 class="heading-style-h2" style="color: #333;">我們的服務</h2>
+                    <p class="text-size-medium" style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto;">
+                      運用最先進的 AI 人工智慧與數據分析技術<br/>為企業創造卓越的商業價值
+                    </p>
                   </div>
-                  <div class="home_about_content-right">
-                    <div class="margin-top margin-medium">
-                      <div class="button-group">
-                        <a href="#case" class="button is-secondary w-button" onclick="event.preventDefault(); document.getElementById('case').scrollIntoView({behavior: 'smooth', block: 'start'});">AI Agent</a>
-                        <a href="#contact" class="button is-link is-icon w-inline-block">
-                          <div>聯繫專人</div>
-                          <div class="icon-embed-xxsmall w-embed">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M6 3L11 8L6 13" stroke="CurrentColor" stroke-width="1.5"/>
-                            </svg>
-                          </div>
-                        </a>
-                      </div>
+                </div>
+                
+                <!-- 服務卡片網格 -->
+                <div class="services-grid">
+                  <!-- AI Agent 解決方案 -->
+                  <div class="service-card ai-agent">
+                    <div class="service-icon-wrapper">
+                      <div class="service-icon">🤖</div>
+                    </div>
+                    <div class="service-content">
+                      <h3 class="service-title heading-style-h3">AI Agent 解決方案</h3>
+                      <p class="service-description text-size-medium">智能化對話系統與自動化流程，提升企業營運效率與客戶體驗</p>
+                      <ul class="service-features">
+                        <li>智能客服機器人</li>
+                        <li>自動化業務流程</li>
+                        <li>多語言對話支援</li>
+                      </ul>
+                    </div>
+                    <div class="service-cta">
+                      <a href="#case" class="service-link" onclick="event.preventDefault(); document.getElementById('case').scrollIntoView({behavior: 'smooth', block: 'start'});">
+                        了解更多 →
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- 數據智能產品 -->
+                  <div class="service-card data-intelligence">
+                    <div class="service-icon-wrapper">
+                      <div class="service-icon">📊</div>
+                    </div>
+                    <div class="service-content">
+                      <h3 class="service-title heading-style-h3">數據智能產品</h3>
+                      <p class="service-description text-size-medium">深度數據分析與視覺化報表，助力企業做出精準決策</p>
+                      <ul class="service-features">
+                        <li>數據整合平台</li>
+                        <li>智能分析儀表板</li>
+                        <li>預測性分析模型</li>
+                      </ul>
+                    </div>
+                    <div class="service-cta">
+                      <a href="#contact" class="service-link">
+                        了解更多 →
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- 客製專案開發 -->
+                  <div class="service-card custom-development">
+                    <div class="service-icon-wrapper">
+                      <div class="service-icon">⚙️</div>
+                    </div>
+                    <div class="service-content">
+                      <h3 class="service-title heading-style-h3">客製專案開發</h3>
+                      <p class="service-description text-size-medium">量身打造的技術解決方案，滿足企業獨特的業務需求</p>
+                      <ul class="service-features">
+                        <li>需求分析與規劃</li>
+                        <li>系統開發與整合</li>
+                        <li>持續維護與優化</li>
+                      </ul>
+                    </div>
+                    <div class="service-cta">
+                      <a href="#contact" class="service-link">
+                        聯繫專人 →
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1452,6 +2164,7 @@
                             <div class="card-subtitle">支援多種第三方資料源<br>FTP、MySQL、MongoDB 等</div>
                           </div>
                         </div>
+                        <div class="expand-arrow"></div>
                         
                         <div class="card-content">
                           <div class="content-section features-section">
@@ -1476,6 +2189,10 @@
                                 <div class="data-source-tag">MySQL</div>
                                 <div class="data-source-tag">MongoDB</div>
                                 <div class="data-source-tag">PostgreSQL</div>
+                                <div class="data-source-tag">BigQuery</div>
+                                <div class="data-source-tag">Redshift</div>
+                                <div class="data-source-tag">Kafka</div>
+                                <div class="data-source-tag">Oracle</div>
                               </div>
                             </div>
                           </div>
@@ -1491,6 +2208,7 @@
                             <div class="card-subtitle">內建 ID Mapping 圖譜<br>支援自動身份合併與多身份識別</div>
                           </div>
                         </div>
+                        <div class="expand-arrow"></div>
                         
                         <div class="card-content">
                           <div class="content-section features-section">
@@ -1562,6 +2280,7 @@
                             <div class="card-subtitle">內建可視化建模任務<br>支援拖拉式清洗/轉檔位/合併</div>
                           </div>
                         </div>
+                        <div class="expand-arrow"></div>
                         
                         <div class="card-content">
                           <div class="content-section features-section">
@@ -1601,6 +2320,23 @@
                                     <div class="step-description">整合用戶畫像與行為標籤</div>
                                   </div>
                                 </div>
+                                <div class="flow-step">
+                                  <div class="step-number">4</div>
+                                  <div class="step-content">
+                                    <div class="step-title">事件明細</div>
+                                    <div class="step-description">記錄與分析用戶行為事件</div>
+                                  </div>
+                                </div>
+                                <div class="flow-step">
+                                  <div class="step-number">5</div>
+                                  <div class="step-content">
+                                    <div class="step-title">報表生成</div>
+                                    <div class="step-description">產生可視化分析報表與洞察</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div style="margin-top: 16px; font-size: 0.9rem; color: #7f8c8d;">
+                                支援 IDMapping 關係表、事件/用戶/明細表處理，產生可視化報表
                               </div>
                             </div>
                           </div>
@@ -1904,6 +2640,10 @@
           visibility: visible !important;
           max-height: none !important;
           margin-top: 24px !important;
+        }
+
+        .feature-card.mobile-expanded .expand-arrow::before {
+          transform: rotate(-135deg) !important;
         }
       `;
       document.head.appendChild(style);

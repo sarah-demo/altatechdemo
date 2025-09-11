@@ -9,11 +9,21 @@
 **功能**: 控制網頁可以載入哪些資源，防止 XSS 攻擊  
 **設定**:
 - `default-src 'self'` - 預設只允許同源資源
-- `script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com` - 腳本來源限制
+- `script-src 'self' 'unsafe-inline' 'unsafe-eval'` - 腳本來源限制（包含 GTM 支援）
 - `style-src 'self' 'unsafe-inline'` - 樣式來源限制
-- `img-src 'self' data: https:` - 圖片來源限制
+- `img-src 'self' data: https: blob:` - 圖片來源限制（支援動態內容）
 - `object-src 'none'` - 禁用 Flash 等插件
 - `frame-ancestors 'none'` - 防止被嵌入 iframe
+- `child-src https://www.googletagmanager.com` - 允許 GTM 子框架
+- `frame-src https://www.googletagmanager.com` - 允許 GTM 嵌入框架
+
+**GTM 特定設定**:
+- 允許的 Google 服務域名：
+  - `https://www.googletagmanager.com`
+  - `https://www.google-analytics.com`
+  - `https://tagmanager.google.com`
+  - `https://*.googleapis.com`
+  - `https://*.gstatic.com`
 
 ### 2. 其他安全標頭
 ```html
@@ -76,11 +86,21 @@
 - 自動移除未授權的腳本注入
 - 檢查新增節點的合法性
 
+**GTM 例外處理**:
+- 允許包含 `gtag`、`dataLayer`、`GTM-` 關鍵字的腳本
+- 允許來自 Google 相關域名的腳本
+- 保護 GTM 彈窗和追蹤代碼正常運作
+
 ### 9. 腳本白名單機制
 **實施方式**:
 - 所有合法腳本都標記 `data-legitimate="true"`
 - 未標記的腳本會被自動移除
 - 防止惡意腳本注入
+
+**GTM 特殊處理**:
+- GTM 相關腳本不需要 `data-legitimate` 屬性
+- 自動識別並允許 Google Tag Manager 腳本
+- 支援動態載入的追蹤代碼和彈窗腳本
 
 ## ⚙️ 設定說明
 
@@ -92,12 +112,20 @@
 3. **檢查 CSP**: 根據實際需求調整 Content Security Policy
 4. **安全驗證**: 確認移除了通用的 `github.io` 設定以提高安全性
 
+### GTM 整合設定
+**Google Tag Manager 整合已完成**:
+- 已設定 GTM 容器 ID：`GTM-PRTSFN96`
+- CSP 政策已調整為支援 GTM 彈窗和追蹤功能
+- 安全監控已豁免 GTM 相關腳本
+- 支援透過 GTM 埋入第三方追蹤代碼和彈窗
+
 ### 自定義設定
 在安全保護腳本中，你可以調整：
 - 允許的來源域名
 - 可疑模式的正則表達式
 - 開發者工具檢測敏感度
 - 保護機制的強度
+- GTM 例外處理規則
 
 ## 🚨 注意事項
 
@@ -147,6 +175,13 @@
 - [ ] 所有功能在生產環境中正常運作
 - [ ] 安全警告訊息顯示正確
 - [ ] 無不必要的控制台錯誤
+
+**GTM 整合檢查**:
+- [ ] GTM 容器 ID 設定正確 (`GTM-PRTSFN96`)
+- [ ] GTM 彈窗能夠正常顯示
+- [ ] 第三方追蹤代碼正常載入
+- [ ] 沒有 CSP 阻擋 GTM 相關資源
+- [ ] 動態腳本注入功能正常
 
 ## 🆘 緊急停用
 

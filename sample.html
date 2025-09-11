@@ -14,7 +14,7 @@
   <!-- End Google Tag Manager -->
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; media-src 'self'; object-src 'none'; child-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -177,6 +177,159 @@
       font-size: 16px !important;
       line-height: 1.5 !important;
     }
+    
+    /* 新的 3D 圓角按鈕系統 - 參考卡片風格 */
+    .button, .w-button {
+      border-radius: 20px !important;
+      padding: 12px 24px !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      line-height: 1.4 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      cursor: pointer !important;
+      border: none !important;
+      position: relative !important;
+      overflow: hidden !important;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* 主要按鈕 - 藍色主題 */
+    .button:not(.is-secondary):not(.is-link), .w-button:not(.is-secondary):not(.is-link) {
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      box-shadow: 0 8px 25px rgba(46, 115, 234, 0.3) !important;
+    }
+    
+    .button:not(.is-secondary):not(.is-link):hover, .w-button:not(.is-secondary):not(.is-link):hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
+    }
+    
+    /* 次要按鈕 - 白色背景 */
+    .button.is-secondary, .w-button.is-secondary {
+      background: linear-gradient(135deg, #ffffff, #f8f9fa) !important;
+      color: #2E73EA !important;
+      border: 2px solid #2E73EA !important;
+      box-shadow: 0 6px 20px rgba(46, 115, 234, 0.15) !important;
+    }
+    
+    .button.is-secondary:hover, .w-button.is-secondary:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8) !important;
+      color: white !important;
+      box-shadow: 0 12px 35px rgba(46, 115, 234, 0.4) !important;
+    }
+    
+    /* 鏈接按鈕 - 簡潔風格 */
+    .button.is-link, .w-button.is-link {
+      background: transparent !important;
+      color: #2E73EA !important;
+      box-shadow: none !important;
+      border: 2px solid transparent !important;
+      padding: 8px 16px !important;
+    }
+    
+    .button.is-link:hover, .w-button.is-link:hover {
+      background: rgba(46, 115, 234, 0.1) !important;
+      border-radius: 16px !important;
+      transform: translateY(-2px) !important;
+    }
+    
+    /* 小型按鈕 */
+    .button.is-small, .w-button.is-small {
+      padding: 8px 16px !important;
+      font-size: 14px !important;
+      border-radius: 16px !important;
+    }
+    
+    /* 按鈕光澤效果 */
+    .button::before, .w-button::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -50% !important;
+      left: -50% !important;
+      width: 200% !important;
+      height: 200% !important;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent) !important;
+      transform: translateX(-100%) translateY(-100%) rotate(45deg) !important;
+      transition: transform 0.6s ease !important;
+    }
+    
+    .button:hover::before, .w-button:hover::before {
+      transform: translateX(100%) translateY(100%) rotate(45deg) !important;
+    }
+    
+    /* Mission/Vision/Values 卡片樣式 */
+    .home_features-list_item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border: 1px solid #e1e8ed;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+    
+    .home_features-list_item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.15);
+    }
+    
+    /* 為每張卡片添加不同的頂部顏色條 */
+    .home_features-list_item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 24px 24px 0 0;
+      background: linear-gradient(90deg, #2E73EA, #3CC1C0);
+    }
+    
+    /* 圖標包裝器樣式 */
+    .home_features-list_item-icon-wrapper {
+      background: linear-gradient(135deg, #2E73EA, #1e5bb8);
+      border-radius: 16px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .home_features-list_item:hover .home_features-list_item-icon-wrapper {
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    /* GTM 彈窗支援 */
+    [id*="gtm"], [class*="gtm"], [data-gtm], .gtm-popup, .gtm-modal {
+      z-index: 999999 !important;
+      position: fixed !important;
+      pointer-events: auto !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      display: block !important;
+    }
+    
+    /* 確保彈窗背景遮罩正常顯示 */
+    .gtm-overlay, [class*="overlay"][id*="gtm"], [class*="backdrop"][id*="gtm"] {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 999998 !important;
+      display: block !important;
+    }
 
     @media (max-width: 768px) {
       .color-palette {
@@ -300,14 +453,25 @@
         });
       });
       
-      // 監控 DOM 變化以防篡改
+      // 監控 DOM 變化以防篡改 - 允許 GTM 相關腳本
       const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
-                console.warn('Unauthorized script injection detected:', node);
-                node.remove();
+                // 允許 GTM 相關的腳本和彈窗腳本
+                const src = node.src || '';
+                const isGTMRelated = src.includes('googletagmanager.com') || 
+                                   src.includes('google-analytics.com') ||
+                                   src.includes('tagmanager.google.com') ||
+                                   node.innerHTML.includes('gtag') ||
+                                   node.innerHTML.includes('dataLayer') ||
+                                   node.innerHTML.includes('GTM-');
+                
+                if (!isGTMRelated) {
+                  console.warn('Unauthorized script injection detected:', node);
+                  node.remove();
+                }
               }
             }
           });
