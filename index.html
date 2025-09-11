@@ -31,7 +31,7 @@
   <!-- End Google Tag Manager -->
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com https://achat.alta-di.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com https://achat.alta-di.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com https://achat.alta-di.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com https://achat.alta-di.com; frame-src https://www.googletagmanager.com https://achat.alta-di.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -1868,7 +1868,7 @@
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               if (node.tagName === 'SCRIPT' && !node.hasAttribute('data-legitimate')) {
-                // 允許 GTM 相關的腳本和彈窗腳本
+                // 允許 GTM 相關的腳本和 Live Chat 腳本
                 const src = node.src || '';
                 const isGTMRelated = src.includes('googletagmanager.com') || 
                                    src.includes('google-analytics.com') ||
@@ -1877,7 +1877,10 @@
                                    node.innerHTML.includes('dataLayer') ||
                                    node.innerHTML.includes('GTM-');
                 
-                if (!isGTMRelated) {
+                const isLiveChatRelated = src.includes('achat.alta-di.com') ||
+                                        src.includes('initQuickChat.js');
+                
+                if (!isGTMRelated && !isLiveChatRelated) {
                   console.warn('Unauthorized script injection detected:', node);
                   node.remove();
                 }
@@ -2652,5 +2655,8 @@
 
   <!-- AltaTech 互動效果 -->
   <script src="interactive-effects.js" type="text/javascript" data-legitimate="true"></script>
+  
+  <!-- Live Chat -->
+  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async data-legitimate="true"></script>
 </body>
 </html>
