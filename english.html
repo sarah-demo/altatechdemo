@@ -31,7 +31,7 @@
   <!-- End Google Tag Manager -->
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com https://*.googleapis.com https://*.gstatic.com https://achat.alta-di.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com https://achat.alta-di.com; img-src 'self' data: https: blob:; font-src 'self' data: https://*.googleapis.com https://*.gstatic.com https://achat.alta-di.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://tagmanager.google.com https://*.googleapis.com https://achat.alta-di.com wss://achat.alta-di.com; media-src 'self'; object-src 'none'; child-src https://www.googletagmanager.com https://achat.alta-di.com; frame-src https://www.googletagmanager.com https://achat.alta-di.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -1915,16 +1915,8 @@
     })();
   </script>
   
-  <!-- Conditional Live Chat - Only loads on GitHub Pages -->
-  <script>
-    // Only load Live Chat when deployed on GitHub Pages
-    if (window.location.hostname.includes('github.io') || window.location.hostname.includes('githubusercontent.com')) {
-      const script = document.createElement('script');
-      script.src = 'https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM';
-      script.async = true;
-      document.head.appendChild(script);
-    }
-  </script>
+  <!-- Live Chat Integration -->
+  <script src="https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM" async></script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
