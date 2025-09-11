@@ -859,6 +859,17 @@
       
     })();
   </script>
+  
+  <!-- Conditional Live Chat - Only loads on GitHub Pages -->
+  <script>
+    // Only load Live Chat when deployed on GitHub Pages
+    if (window.location.hostname.includes('github.io') || window.location.hostname.includes('githubusercontent.com')) {
+      const script = document.createElement('script');
+      script.src = 'https://achat.alta-di.com/initQuickChat.js?platform=others&accessId=5306413e-e877-4f60-8686-45cd9002484e&oemFlag=OEM';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
